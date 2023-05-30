@@ -3,6 +3,6 @@
 ################################################################################
 
 /.vs
-/src/PaymentFileProcessor/.vs/PaymentFileProcessor
-/src/PaymentFileProcessor/bin/Debug/net7.0
-/src/PaymentFileProcessor/obj
+/src/WorkItemProcessor/.vs/WorkItemProcessor
+/src/WorkItemProcessor/bin/Debug/net7.0
+/src/WorkItemProcessor/obj
