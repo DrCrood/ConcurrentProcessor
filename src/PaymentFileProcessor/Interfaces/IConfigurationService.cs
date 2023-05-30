@@ -5,6 +5,6 @@
     /// </summary>
     public interface IConfigurationService
     {
-        public int GetMaxConCurrentFileProcessingThreads();
+        public int GetMaxConCurrentItemProcessingThreads();
     }
 }

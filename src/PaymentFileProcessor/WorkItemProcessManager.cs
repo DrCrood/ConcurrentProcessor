@@ -4,7 +4,7 @@ using WorkItemProcessor.Models;
 namespace WorkItemProcessor
 {
     /// <summary>
-    /// Worker service for managing payment files.
+    /// Worker service for managing work items.
     /// </summary>
     public class WorkItemProcessManager : BackgroundService
     {

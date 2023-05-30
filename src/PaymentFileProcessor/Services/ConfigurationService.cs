@@ -10,19 +10,12 @@ namespace WorkItemProcessor.Services
     /// <summary>
     /// Provide configuration data service
     /// </summary>
-    [ExcludeFromCodeCoverage]
     public class ConfigurationService : IConfigurationService
     {
         private readonly IConfiguration _configuration;
         private readonly ILogger _logger;
         private int _maxConCurrentProcessingItems;
 
-        /// <summary>
-        /// Create a ConfigurationService instance.
-        /// </summary>
-        /// <param name="configuration"></param>
-        /// <param name="env"></param>
-        /// <exception cref="ArgumentNullException"></exception>
         public ConfigurationService(IConfiguration configuration, ILogger<ConfigurationService> logger)
         {
             _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
@@ -61,7 +54,7 @@ namespace WorkItemProcessor.Services
             }
         }
 
-        public int GetMaxConCurrentFileProcessingThreads()
+        public int GetMaxConCurrentItemProcessingThreads()
         {
             return _maxConCurrentProcessingItems;
         }

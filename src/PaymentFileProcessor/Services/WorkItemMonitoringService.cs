@@ -14,7 +14,7 @@ namespace WorkItemProcessor.Services
         private readonly IUtilityService _utilityService;
 
         /// <summary>
-        /// Payment item parsing service
+        /// Work item monitoring service
         /// </summary>
         /// <param name="logger"></param>
         /// <param name="itemCollection"></param>
@@ -28,9 +28,8 @@ namespace WorkItemProcessor.Services
         }
 
         /// <summary>
-        /// Queue payment items for processing.
+        /// Queue work items for processing.
         /// </summary>
-        /// <param name="fileConfigs"></param>
         /// <returns>List of queued items</returns>
         public async Task<List<string>> QueueWorkItems()
         {

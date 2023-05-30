@@ -3,7 +3,7 @@
 namespace ConcurrentProcessor.Models
 {
     /// <summary>
-    /// Payment file processing work class. 
+    /// Work item class. 
     /// </summary>
     public class WorkItem
     {
@@ -22,10 +22,6 @@ namespace ConcurrentProcessor.Models
             Status = WorkItemStatus.Unknown;
         }
 
-        /// <summary>
-        /// Payment file processing core work flow.
-        /// </summary>
-        /// <returns>NumOfTransactions</returns>
         public async Task<bool> Process()
         {
             try
@@ -50,11 +46,6 @@ namespace ConcurrentProcessor.Models
             }
         }
 
-        /// <summary>
-        /// Read file content and return as a list of strings.
-        /// </summary>
-        /// <param name="filePath"></param>
-        /// <returns>List<string></returns>
         public async Task WaitWorkItemSizeTime()
         {
             await Task.Delay(Size * 1000);

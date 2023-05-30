@@ -4,12 +4,12 @@ namespace WorkItemProcessor.Interfaces
 {
     public interface IWorkItemCollection
     {
-        bool Enqueue(WorkItem files);
-        bool ContainsFile();
+        bool Enqueue(WorkItem items);
+        bool ContainsWorkItem();
         WorkItem GetNext();
         void LogWorkingItems();
         int GetQueueSize();
         void MarkItemAsProcessed(string name, bool success);
-        void AddWorkingFile(WorkItem item);
+        void AddWorkingItems(WorkItem item);
     }
 }

@@ -6,7 +6,7 @@ using WorkItemProcessor.Interfaces;
 namespace WorkItemProcessor
 {
     /// <summary>
-    /// Class representing a collection of files.
+    /// Class representing a collection of work items.
     /// </summary>
     public class WorkItemCollection : IWorkItemCollection
     {
@@ -56,7 +56,7 @@ namespace WorkItemProcessor
         /// Check if the queue contains any item.
         /// </summary>
         /// <returns></returns>
-        public bool ContainsFile()
+        public bool ContainsWorkItem()
         {
             return workitemQueue.Any();
         }
@@ -65,7 +65,7 @@ namespace WorkItemProcessor
         /// Add the item to the in-processing item list.
         /// </summary>
         /// <param name="item"></param>
-        public void AddWorkingFile(WorkItem item)
+        public void AddWorkingItems(WorkItem item)
         {
             _workingWorkItems.TryAdd(item.Name, item);
         }

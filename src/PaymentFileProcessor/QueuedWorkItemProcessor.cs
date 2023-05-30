@@ -17,11 +17,11 @@ namespace WorkItemProcessor
         private int MaxConCurrentItemProcessingThreads;
         public int CycleTimeInSeconds { get; set; }
 
-        public QueuedWorkItemProcessor(ILoggerFactory loggerFactory, IWorkItemCollection fileCollection, IHostApplicationLifetime applicationLifetime,
+        public QueuedWorkItemProcessor(ILoggerFactory loggerFactory, IWorkItemCollection itemCollection, IHostApplicationLifetime applicationLifetime,
                              IConfigurationService configService,
                              IWorkItemMonitoringService monitoringService)
         {
-            _workitemCollection = fileCollection ?? throw new ArgumentNullException(nameof(fileCollection));
+            _workitemCollection = itemCollection ?? throw new ArgumentNullException(nameof(itemCollection));
             _cancellationToken = applicationLifetime.ApplicationStopping;
             _configService = configService ?? throw new ArgumentNullException(nameof(configService));
             _loggerFactory = loggerFactory ?? throw new ArgumentNullException(nameof(loggerFactory));
@@ -31,7 +31,7 @@ namespace WorkItemProcessor
         public void Start()
         {
             _logger.LogInformation("Queued WorkItem Processor started.");
-            MaxConCurrentItemProcessingThreads = _configService.GetMaxConCurrentFileProcessingThreads();
+            MaxConCurrentItemProcessingThreads = _configService.GetMaxConCurrentItemProcessingThreads();
             CycleTimeInSeconds = 1;
             Task.Run(WorkItemMonitorLoop);
         }
@@ -44,13 +44,13 @@ namespace WorkItemProcessor
 
             while (!_cancellationToken.IsCancellationRequested)
             {
-                while (_workitemCollection.ContainsFile())
+                while (_workitemCollection.ContainsWorkItem())
                 {
                     await semaphore.WaitAsync(_cancellationToken);
 
                     WorkItem item = _workitemCollection.GetNext();
                     item.Logger = _loggerFactory.CreateLogger<WorkItem>();
-                    _workitemCollection.AddWorkingFile(item);
+                    _workitemCollection.AddWorkingItems(item);
                     _ = Task.Run( async () =>
                     {
                         bool success = await item.Process();
